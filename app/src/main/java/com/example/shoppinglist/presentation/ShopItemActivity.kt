@@ -8,16 +8,7 @@ import com.example.shoppinglist.R
 import com.example.shoppinglist.domain.ShopItem
 import kotlin.RuntimeException
 
-class ShopItemActivity : AppCompatActivity() {
-
-    /*
-    private lateinit var viewModel: ShopItemViewModel
-
-    private lateinit var tilName: TextInputLayout
-    private lateinit var tilCount: TextInputLayout
-    private lateinit var etName: EditText
-    private lateinit var etCount: EditText
-    private lateinit var buttonSave: Button*/
+class ShopItemActivity : AppCompatActivity(),ShopItemFragment.OnEditingFinishedListener {
 
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = ShopItem.UNDEFINED_ID
@@ -33,29 +24,11 @@ class ShopItemActivity : AppCompatActivity() {
         //observeViewModel()
     }
 
-    /*
-    private fun observeViewModel(){
-        viewModel.errorInputCount.observe(this){
-            val message = if(it){
-                getString(R.string.error_input_count)
-            }else{
-                null
-            }
-            tilCount.error = message
-        }
+    override fun onEditingFinished() {
+        finish()
+    }
 
-        viewModel.errorInputName.observe(this){
-            val message = if(it){
-                getString(R.string.error_input_name)
-            }else{
-                null
-            }
-            tilName.error = message
-        }
-        viewModel.shouldCloseScreen.observe(this){
-            finish()
-        }
-    }*/
+
 
     private fun launchRightMode(){
         val fragment = when(screenMode){
@@ -67,25 +40,6 @@ class ShopItemActivity : AppCompatActivity() {
             .replace(R.id.shop_item_container, fragment) // замена контейнера
             .commit()
     }
-    /*
-
-    private fun launchEditMode(){
-        viewModel.getShopItem(shopItemId)
-        viewModel.shopItem.observe(this){
-            etName.setText(it.name)
-            etCount.setText(it.count.toString())
-        }
-        buttonSave.setOnClickListener {
-            viewModel.editShopItem(etName.text?.toString(), etCount.text?.toString())
-        }
-
-    }
-
-    private fun launchAddMode(){
-        buttonSave.setOnClickListener {
-            viewModel.addShopItem(etName.text?.toString(), etCount.text?.toString())
-        }
-    }*/
 
     private fun parseIntent(){
         if(!intent.hasExtra(EXTRA_SCREEN_MODE)){
@@ -104,15 +58,6 @@ class ShopItemActivity : AppCompatActivity() {
         }
 
     }
-
-    /*
-    private fun initViews(){
-        tilName = findViewById(R.id.til_name)
-        tilCount = findViewById(R.id.til_count)
-        etName = findViewById(R.id.et_name)
-        etCount = findViewById(R.id.et_count)
-        buttonSave = findViewById(R.id.save_btn)
-    }*/
 
     companion object {
         private const val EXTRA_SCREEN_MODE = "extra_mode"
@@ -136,3 +81,66 @@ class ShopItemActivity : AppCompatActivity() {
     }
 
 }
+
+/*
+    private lateinit var viewModel: ShopItemViewModel
+
+    private lateinit var tilName: TextInputLayout
+    private lateinit var tilCount: TextInputLayout
+    private lateinit var etName: EditText
+    private lateinit var etCount: EditText
+    private lateinit var buttonSave: Button*/
+
+/*
+
+  private fun launchEditMode(){
+      viewModel.getShopItem(shopItemId)
+      viewModel.shopItem.observe(this){
+          etName.setText(it.name)
+          etCount.setText(it.count.toString())
+      }
+      buttonSave.setOnClickListener {
+          viewModel.editShopItem(etName.text?.toString(), etCount.text?.toString())
+      }
+
+  }
+
+  private fun launchAddMode(){
+      buttonSave.setOnClickListener {
+          viewModel.addShopItem(etName.text?.toString(), etCount.text?.toString())
+      }
+  }*/
+
+
+/*
+private fun initViews(){
+    tilName = findViewById(R.id.til_name)
+    tilCount = findViewById(R.id.til_count)
+    etName = findViewById(R.id.et_name)
+    etCount = findViewById(R.id.et_count)
+    buttonSave = findViewById(R.id.save_btn)
+}*/
+
+/*
+    private fun observeViewModel(){
+        viewModel.errorInputCount.observe(this){
+            val message = if(it){
+                getString(R.string.error_input_count)
+            }else{
+                null
+            }
+            tilCount.error = message
+        }
+
+        viewModel.errorInputName.observe(this){
+            val message = if(it){
+                getString(R.string.error_input_name)
+            }else{
+                null
+            }
+            tilName.error = message
+        }
+        viewModel.shouldCloseScreen.observe(this){
+            finish()
+        }
+    }*/
