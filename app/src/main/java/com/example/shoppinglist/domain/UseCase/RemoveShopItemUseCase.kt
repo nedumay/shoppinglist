@@ -5,7 +5,7 @@ import com.example.shoppinglist.domain.repository.ShopListRepository
 
 class RemoveShopItemUseCase(private val shopListRepository: ShopListRepository) {
 
-    fun removeShopItem(shopItem: ShopItem) {
+    suspend fun removeShopItem(shopItem: ShopItem) {
         shopListRepository.removeShopItem(shopItem = shopItem)
     }
 }

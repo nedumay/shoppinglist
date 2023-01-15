@@ -6,13 +6,13 @@ import com.example.shoppinglist.domain.ShopItem
 interface ShopListRepository {
 
     // Добавление элемента в список
-    fun addShopItem(shopItem: ShopItem)
+    suspend fun addShopItem(shopItem: ShopItem)
     // Удаление элемента из списка
-    fun removeShopItem(shopItem: ShopItem)
+    suspend fun removeShopItem(shopItem: ShopItem)
     // Редактирование элемента в списке
-    fun editShopItem(shopItem: ShopItem)
+    suspend fun editShopItem(shopItem: ShopItem)
     // Получить элемент по его id
-    fun getShopItem(shopItemId: Int):ShopItem
+    suspend fun getShopItem(shopItemId: Int):ShopItem
     // Добавление спика
     fun getShopList(): LiveData<List<ShopItem>>
 
